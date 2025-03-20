@@ -1,0 +1,2 @@
+Hello, Buffered World!
+Goodbye, Buffered World!
