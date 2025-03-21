@@ -72,5 +72,24 @@ func main() {
 	fmt.Println(*numPtr, *numPtr2, numPtr, numPtr2)
 
 	// panic - stops code execution, runs any deferred functions
-	panic("terminated with non-zero status")
+	// panic("terminated with non-zero status")
+
+	// print & println - very specific way for output to stderr
+	print(someNames, someMap, "\n")
+	println("Hello", someMap["C"])
+
+	// recover - inside `defer` catches panic and prevents from crashing
+	// only recovers from panics inside the same goroutine
+	fmt.Println(safeDivide(10, 2))
+	fmt.Println(safeDivide(10, 0))
+	fmt.Println("Program continues...")
+}
+
+func safeDivide(a, b int) int {
+	defer func() {
+		if r := recover(); r != nil {
+			fmt.Println("Recovered from panic", r)
+		}
+	}()
+	return a / b
 }
