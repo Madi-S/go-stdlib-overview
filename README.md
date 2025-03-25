@@ -1,0 +1,1 @@
+# Collection of code snippets showcasing the standard go library
